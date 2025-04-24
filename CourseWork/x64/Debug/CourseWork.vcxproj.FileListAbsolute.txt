@@ -1,1 +1,6 @@
 C:\Coursework\CourseWork\CourseWork\x64\Debug\CourseWork.vcxproj.AssemblyReference.cache
+C:\Coursework\CourseWork\CourseWork\x64\Debug\CourseWork.MyForm.resources
+C:\Coursework\CourseWork\CourseWork\x64\Debug\CourseWork.vcxproj.GenerateResource.cache
+C:\Coursework\CourseWork\CourseWork\x64\Debug\CourseWork.MyForm2.resources
+C:\Coursework\CourseWork\CourseWork\x64\Debug\CourseWork.MyForm31.resources
+C:\Coursework\CourseWork\CourseWork\x64\Debug\CourseWork.MyForm1.resources
