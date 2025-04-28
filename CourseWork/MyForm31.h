@@ -16,7 +16,8 @@ namespace CourseWork {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
-	using namespace System::Data::SqlClient; 
+	using namespace System::Data::SqlClient;
+	using namespace System::IO;
 	
 	/// <summary>
 	/// Сводка для MyForm3
@@ -64,6 +65,13 @@ namespace CourseWork {
 	protected:
 
 		System::Windows::Forms::OpenFileDialog^ openFileDialog1;
+	private: System::Windows::Forms::Button^ buttonNext;
+	private: System::Windows::Forms::Button^ buttonBack;
+	protected:
+
+	protected:
+
+	private: System::Windows::Forms::Button^ button6;
 
 	private:
 
@@ -82,6 +90,7 @@ namespace CourseWork {
 			image->Save(ms, System::Drawing::Imaging::ImageFormat::Jpeg); // Можно использовать другой формат
 			return ms->ToArray();
 		}
+
 		/// <summary>
 		/// Требуемый метод для поддержки конструктора — не изменяйте 
 		/// содержимое этого метода с помощью редактора кода.
@@ -102,14 +111,19 @@ namespace CourseWork {
 			this->PushToData = (gcnew System::Windows::Forms::Button());
 			this->button3 = (gcnew System::Windows::Forms::Button());
 			this->button2 = (gcnew System::Windows::Forms::Button());
+			this->buttonNext = (gcnew System::Windows::Forms::Button());
+			this->buttonBack = (gcnew System::Windows::Forms::Button());
+			this->button6 = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// button1
 			// 
+			this->button1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
 			this->button1->Location = System::Drawing::Point(743, 57);
 			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(100, 51);
+			this->button1->Size = System::Drawing::Size(100, 50);
 			this->button1->TabIndex = 0;
 			this->button1->Text = L"Назад";
 			this->button1->UseVisualStyleBackColor = true;
@@ -217,9 +231,11 @@ namespace CourseWork {
 			// 
 			// PushToData
 			// 
-			this->PushToData->Location = System::Drawing::Point(709, 497);
+			this->PushToData->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->PushToData->Location = System::Drawing::Point(439, 516);
 			this->PushToData->Name = L"PushToData";
-			this->PushToData->Size = System::Drawing::Size(134, 69);
+			this->PushToData->Size = System::Drawing::Size(120, 50);
 			this->PushToData->TabIndex = 12;
 			this->PushToData->Text = L"Добавить";
 			this->PushToData->UseVisualStyleBackColor = true;
@@ -227,9 +243,11 @@ namespace CourseWork {
 			// 
 			// button3
 			// 
+			this->button3->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
 			this->button3->Location = System::Drawing::Point(637, 57);
 			this->button3->Name = L"button3";
-			this->button3->Size = System::Drawing::Size(100, 51);
+			this->button3->Size = System::Drawing::Size(100, 50);
 			this->button3->TabIndex = 13;
 			this->button3->Text = L"Выйти";
 			this->button3->UseVisualStyleBackColor = true;
@@ -237,19 +255,60 @@ namespace CourseWork {
 			// 
 			// button2
 			// 
+			this->button2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
 			this->button2->Location = System::Drawing::Point(439, 310);
 			this->button2->Name = L"button2";
-			this->button2->Size = System::Drawing::Size(177, 54);
+			this->button2->Size = System::Drawing::Size(168, 62);
 			this->button2->TabIndex = 14;
 			this->button2->Text = L"Добавить изображение";
 			this->button2->UseVisualStyleBackColor = true;
 			this->button2->Click += gcnew System::EventHandler(this, &MyForm3::button2_Click);
+			// 
+			// buttonNext
+			// 
+			this->buttonNext->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->buttonNext->Location = System::Drawing::Point(793, 516);
+			this->buttonNext->Name = L"buttonNext";
+			this->buttonNext->Size = System::Drawing::Size(50, 50);
+			this->buttonNext->TabIndex = 15;
+			this->buttonNext->Text = L">";
+			this->buttonNext->UseVisualStyleBackColor = true;
+			this->buttonNext->Click += gcnew System::EventHandler(this, &MyForm3::buttonNext_Click);
+			// 
+			// buttonBack
+			// 
+			this->buttonBack->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->buttonBack->Location = System::Drawing::Point(737, 516);
+			this->buttonBack->Name = L"buttonBack";
+			this->buttonBack->Size = System::Drawing::Size(50, 50);
+			this->buttonBack->TabIndex = 16;
+			this->buttonBack->Text = L"<";
+			this->buttonBack->UseVisualStyleBackColor = true;
+			this->buttonBack->Click += gcnew System::EventHandler(this, &MyForm3::buttonBack_Click);
+			// 
+			// button6
+			// 
+			this->button6->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->button6->Location = System::Drawing::Point(561, 516);
+			this->button6->Name = L"button6";
+			this->button6->Size = System::Drawing::Size(170, 50);
+			this->button6->TabIndex = 17;
+			this->button6->Text = L"Удалить запись";
+			this->button6->UseVisualStyleBackColor = true;
+			this->button6->Click += gcnew System::EventHandler(this, &MyForm3::button6_Click);
 			// 
 			// MyForm3
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(932, 653);
+			this->Controls->Add(this->button6);
+			this->Controls->Add(this->buttonBack);
+			this->Controls->Add(this->buttonNext);
 			this->Controls->Add(this->button2);
 			this->Controls->Add(this->button3);
 			this->Controls->Add(this->PushToData);
@@ -267,6 +326,7 @@ namespace CourseWork {
 			this->MaximumSize = System::Drawing::Size(950, 700);
 			this->MinimumSize = System::Drawing::Size(950, 700);
 			this->Name = L"MyForm3";
+			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 			this->Text = L"MyForm3";
 			this->Load += gcnew System::EventHandler(this, &MyForm3::MyForm3_Load);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
@@ -277,28 +337,27 @@ namespace CourseWork {
 #pragma endregion
 	private: System::Void MyForm3_Load(System::Object^ sender, System::EventArgs^ e) {
 	}
-	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
-		this->Close();
+	private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
+		Application::Exit();
 	}
 	private: System::Void PushToData_Click(System::Object^ sender, System::EventArgs^ e) {
-				// Обработчик события кнопки
 
 		try {
 			String^ connectionString = "Data Source = localhost\\sqlexpress;Initial Catalog = DB1;Integrated Security = True;Pooling = False;Encrypt = False;TrustServerCertificate = False";
 			SqlConnection^ sqlConnection = gcnew SqlConnection(connectionString);
 			sqlConnection->Open();
-			MessageBox::Show("Соединение открыто.");
+			// MessageBox::Show("Соединение открыто.");
 
 			String^ query = "INSERT INTO [Table] (Id, Name, Type, Overview, Img) VALUES (@Id, @Name, @Type, @Overview, @Img)";
 			SqlCommand^ sqlCommand = gcnew SqlCommand(query, sqlConnection);
-			MessageBox::Show("Запрос создан.");
+			// MessageBox::Show("Запрос создан.");
 
 			sqlCommand->Parameters->AddWithValue("@Id", Convert::ToInt32(textBox2->Text));
 			sqlCommand->Parameters->AddWithValue("@Name", textBox1->Text);
 			sqlCommand->Parameters->AddWithValue("@Type", textBox4->Text);
 			sqlCommand->Parameters->AddWithValue("@Overview", textBox5->Text);
 			sqlCommand->Parameters->AddWithValue("@Img", ConvertImageToBytes(pictureBox1->Image));
-			MessageBox::Show("Параметры добавлены.");
+			// MessageBox::Show("Параметры добавлены.");
 
 			sqlCommand->ExecuteNonQuery();
 			MessageBox::Show("Данные добавлены!");
@@ -324,8 +383,151 @@ namespace CourseWork {
 
 		}
 	}
-	private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
+	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+		this->Close();
+	}
+	private: System::Void buttonNext_Click(System::Object^ sender, System::EventArgs^ e) {
+		try {
+			String^ idText = textBox2->Text->Trim();
+			int currentId = 0;
 
+			// Проверка на пустую строку
+			if (String::IsNullOrEmpty(idText)) {
+				currentId = 0; // если пусто — начать с нуля
+			}
+			else {
+				// Попытка конвертации текста в число
+				currentId = Int32::Parse(idText);
+			}
+
+			String^ connectionString = "Data Source=localhost\\sqlexpress;Initial Catalog=DB1;Integrated Security=True;Pooling=False;Encrypt=False;TrustServerCertificate=False";
+			SqlConnection^ sqlConnection = gcnew SqlConnection(connectionString);
+			sqlConnection->Open();
+
+			String^ query = "SELECT TOP 1 * FROM [Table] WHERE Id > @CurrentId ORDER BY Id ASC";
+			SqlCommand^ sqlCommand = gcnew SqlCommand(query, sqlConnection);
+			sqlCommand->Parameters->AddWithValue("@CurrentId", currentId);
+
+			SqlDataReader^ reader = sqlCommand->ExecuteReader();
+			if (reader->Read()) {
+				textBox2->Text = reader["Id"]->ToString();
+				textBox1->Text = reader["Name"]->ToString();
+				textBox4->Text = reader["Type"]->ToString();
+				textBox5->Text = reader["Overview"]->ToString();
+
+				if (reader["Img"] != DBNull::Value) {
+					array<Byte>^ imgBytes = safe_cast<array<Byte>^>(reader["Img"]);
+					MemoryStream^ ms = gcnew MemoryStream(imgBytes);
+					pictureBox1->Image = Image::FromStream(ms);
+				}
+				else {
+					pictureBox1->Image = nullptr;
+				}
+			}
+			else {
+				MessageBox::Show("Это последняя запись.");
+			}
+			reader->Close();
+		}
+		catch (FormatException^ ex) {
+			MessageBox::Show("Ошибка формата Id: " + ex->Message);
+		}
+		catch (Exception^ ex) {
+			MessageBox::Show("Ошибка: " + ex->Message);
+		}
+	}
+
+	private: System::Void buttonBack_Click(System::Object^ sender, System::EventArgs^ e) {
+		try {
+			String^ idText = textBox2->Text->Trim();
+			int currentId = 0;
+			// Проверка на пустую строку
+			if (String::IsNullOrEmpty(idText)) {
+				currentId = 0; // если пусто — начать с нуля
+			}
+			else {
+				// Попытка конвертации текста в число
+				currentId = Int32::Parse(idText);
+			}
+			String^ connectionString = "Data Source=localhost\\sqlexpress;Initial Catalog=DB1;Integrated Security=True;Pooling=False;Encrypt=False;TrustServerCertificate=False";
+			SqlConnection^ sqlConnection = gcnew SqlConnection(connectionString);
+			sqlConnection->Open();
+			String^ query = "SELECT TOP 1 * FROM [Table] WHERE Id < @CurrentId ORDER BY Id DESC";
+			SqlCommand^ sqlCommand = gcnew SqlCommand(query, sqlConnection);
+			sqlCommand->Parameters->AddWithValue("@CurrentId", currentId);
+			SqlDataReader^ reader = sqlCommand->ExecuteReader();
+			if (reader->Read()) {
+				textBox2->Text = reader["Id"]->ToString();
+				textBox1->Text = reader["Name"]->ToString();
+				textBox4->Text = reader["Type"]->ToString();
+				textBox5->Text = reader["Overview"]->ToString();
+				if (reader["Img"] != DBNull::Value) {
+					array<Byte>^ imgBytes = safe_cast<array<Byte>^>(reader["Img"]);
+					MemoryStream^ ms = gcnew MemoryStream(imgBytes);
+					pictureBox1->Image = Image::FromStream(ms);
+				}
+				else {
+					pictureBox1->Image = nullptr;
+				}
+			}
+			else {
+				MessageBox::Show("Это первая запись.");
+			}
+			reader->Close();
+		}
+		catch (FormatException^ ex) {
+			MessageBox::Show("Ошибка формата Id: " + ex->Message);
+		}
+		catch (Exception^ ex) {
+			MessageBox::Show("Ошибка: " + ex->Message);
+		}
+	}
+	private: System::Void button6_Click(System::Object^ sender, System::EventArgs^ e) {
+		try {
+			// Создаём соединение с базой данных
+			String^ connectionString = "Data Source=localhost\\sqlexpress;Initial Catalog=DB1;Integrated Security=True;Pooling=False;Encrypt=False;TrustServerCertificate=False";
+			SqlConnection^ sqlConnection = gcnew SqlConnection(connectionString);
+			sqlConnection->Open();
+
+			// Попытка получить числовое значение для ID из textBox2
+			int currentId;
+			if (!Int32::TryParse(textBox2->Text, currentId))
+			{
+				MessageBox::Show("Введите корректное числовое значение в поле ID.");
+				sqlConnection->Close();
+				return;
+			}
+
+			// Подготавливаем запрос для удаления записи с указанным ID
+			String^ deleteQuery = "DELETE FROM [Table] WHERE Id = @CurrentId";
+			SqlCommand^ sqlCommand = gcnew SqlCommand(deleteQuery, sqlConnection);
+			sqlCommand->Parameters->AddWithValue("@CurrentId", currentId);
+
+			// Выполняем запрос и получаем количество затронутых строк
+			int rowsAffected = sqlCommand->ExecuteNonQuery();
+			if (rowsAffected > 0)
+			{
+				MessageBox::Show("Запись успешно удалена.");
+			}
+			else
+			{
+				MessageBox::Show("Запись не найдена или уже была удалена.");
+			}
+
+			// Очищаем текстовые поля и сбрасываем изображение
+			textBox1->Clear();
+			textBox2->Clear();
+			textBox4->Clear();
+			textBox5->Clear();
+			pictureBox1->Image = nullptr;
+
+			// Закрываем соединение с базой данных
+			sqlConnection->Close();
+		}
+		catch (Exception^ ex)
+		{
+			MessageBox::Show("Ошибка: " + ex->Message);
+		}
 	}
 };
 }
