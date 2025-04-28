@@ -16,8 +16,8 @@ namespace CourseWork {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
-	using namespace System::Data::SqlClient;
-
+	using namespace System::Data::SqlClient; 
+	
 	/// <summary>
 	/// Сводка для MyForm3
 	/// </summary>
@@ -59,8 +59,11 @@ namespace CourseWork {
 
 
 	private: System::Windows::Forms::Button^ button3;
+	private: System::Windows::Forms::Button^ button2;
 
 	protected:
+
+		System::Windows::Forms::OpenFileDialog^ openFileDialog1;
 
 	private:
 
@@ -98,6 +101,7 @@ namespace CourseWork {
 			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
 			this->PushToData = (gcnew System::Windows::Forms::Button());
 			this->button3 = (gcnew System::Windows::Forms::Button());
+			this->button2 = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -229,12 +233,24 @@ namespace CourseWork {
 			this->button3->TabIndex = 13;
 			this->button3->Text = L"Выйти";
 			this->button3->UseVisualStyleBackColor = true;
+			this->button3->Click += gcnew System::EventHandler(this, &MyForm3::button3_Click);
+			// 
+			// button2
+			// 
+			this->button2->Location = System::Drawing::Point(439, 310);
+			this->button2->Name = L"button2";
+			this->button2->Size = System::Drawing::Size(177, 54);
+			this->button2->TabIndex = 14;
+			this->button2->Text = L"Добавить изображение";
+			this->button2->UseVisualStyleBackColor = true;
+			this->button2->Click += gcnew System::EventHandler(this, &MyForm3::button2_Click);
 			// 
 			// MyForm3
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(932, 653);
+			this->Controls->Add(this->button2);
 			this->Controls->Add(this->button3);
 			this->Controls->Add(this->PushToData);
 			this->Controls->Add(this->pictureBox1);
@@ -273,13 +289,14 @@ namespace CourseWork {
 			sqlConnection->Open();
 			MessageBox::Show("Соединение открыто.");
 
-			String^ query = "INSERT INTO Users (Name, Type, Overview, Img) VALUES (@Name, @Type, @Overview, @Img)";
+			String^ query = "INSERT INTO [Table] (Id, Name, Type, Overview, Img) VALUES (@Id, @Name, @Type, @Overview, @Img)";
 			SqlCommand^ sqlCommand = gcnew SqlCommand(query, sqlConnection);
 			MessageBox::Show("Запрос создан.");
 
+			sqlCommand->Parameters->AddWithValue("@Id", Convert::ToInt32(textBox2->Text));
 			sqlCommand->Parameters->AddWithValue("@Name", textBox1->Text);
-			sqlCommand->Parameters->AddWithValue("@Type", textBox2->Text);
-			sqlCommand->Parameters->AddWithValue("@Overview", textBox4->Text);
+			sqlCommand->Parameters->AddWithValue("@Type", textBox4->Text);
+			sqlCommand->Parameters->AddWithValue("@Overview", textBox5->Text);
 			sqlCommand->Parameters->AddWithValue("@Img", ConvertImageToBytes(pictureBox1->Image));
 			MessageBox::Show("Параметры добавлены.");
 
@@ -289,6 +306,26 @@ namespace CourseWork {
 		catch (Exception^ ex) {
 			MessageBox::Show("Ошибка: " + ex->Message);
 		}
+	}
+	private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
+		OpenFileDialog^ openFileDialog = gcnew OpenFileDialog();
+		openFileDialog->Title = "Выберите изображение";
+		openFileDialog->Filter = "Файлы изображений|*.bmp;*.jpg;*.jpeg;*.png;*.gif";
+
+		if (openFileDialog->ShowDialog() == System::Windows::Forms::DialogResult::OK)
+		{
+			try {
+				Bitmap^ image = gcnew Bitmap(openFileDialog->FileName);
+				pictureBox1->Image = image;
+			}
+			catch (Exception^ ex) {
+				MessageBox::Show("Ошибка загрузки изображения: " + ex->Message);
+			}
+
+		}
+	}
+	private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
+
 	}
 };
 }
